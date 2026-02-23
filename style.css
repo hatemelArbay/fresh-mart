@@ -1209,3 +1209,68 @@ border-radius: 15px;
   }
 }
 
+
+
+/* aboutus  */
+
+.about {
+  padding: 60px 16px;
+  background: #f9fafb;
+}
+
+.aboutContainer {
+  max-width: 900px;
+  margin: auto;
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.about h1 {
+  font-size: 32px;
+  margin-bottom: 8px;
+  color: #111;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 32px;
+  font-size: 15px;
+}
+
+.aboutSection {
+  margin-bottom: 28px;
+}
+
+.aboutSection h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #34a853;
+}
+
+.aboutSection p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #444;
+}
+
+.aboutSection ul {
+  padding-left: 20px;
+}
+
+.aboutSection ul li {
+  margin-bottom: 8px;
+  color: #444;
+  font-size: 15px;
+}
+
+@media (max-width: 600px) {
+  .aboutContainer {
+    padding: 24px;
+  }
+
+  .about h1 {
+    font-size: 26px;
+  }
+}
