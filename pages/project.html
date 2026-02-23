@@ -1,0 +1,408 @@
+<html>
+    <meta name="viewport" content="width= device-width" , initial-scale=" 1.0">
+    <head>
+        <meta charset="UTF-8">
+        <title>Products CRUD</title>
+        <link rel="Stylesheet" href="/style3.css">
+
+    </head>
+
+    <body>
+        <div class = "Products">
+            <div class ="Head">
+
+                <h2> Grocery Admin</h2>
+                <p> manages grocery items (CRUD) </p>
+
+<form id="productForm">
+  <div class="inputs">
+    <input type="hidden" id="productId">
+    <input type="text" placeholder="name" id="name">
+
+    <div class="Price">
+      <input type="number" id="Price" placeholder="Price">
+      <input type="number" id="quantity" placeholder="quantity">
+      <input type="number" id="discPrice" placeholder="discPrice">
+    </div>
+
+    <select id="category" required>
+      <option value="" disabled selected>Select category</option>
+      <option value="vegetables">Vegetables</option>
+      <option value="fruits">Fruits</option>
+      <option value="juices">Juices</option>
+      <option value="bread">Bread</option>
+      <option value="beverages">Beverages</option>
+      <option value="meats">Meats</option>
+    </select>
+
+    <input type="text" id="ImageUrl" placeholder="Image URL">
+    <input type="text" id="description" placeholder="description">
+
+    <button id="Submit" type="submit">Create</button>
+  </div>
+</form>
+                    
+
+                    <div class ="Outputs">
+
+                        <table> 
+                            <tr>
+                                <th>name</th>
+                                <th>price</th>
+                                <th>discPrice</th>
+                                <th>category</th>
+                                <th>quantity</th>
+                                <th>image</th>
+                               
+                                <th>description</th>
+                                <th>update</th>
+                                <th>delete</th>
+
+
+                            </tr>
+                            <tbody id="tableBody">
+                   
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+
+    <script>
+const APIKEY="sb_publishable_qGhgO-t2H-KT3jl0nS_whA_hJ7ipiPP"
+const baseUrl="https://fvaelbyhfeohqtrocnpu.supabase.co/rest/v1"
+const headers={
+    apikey:APIKEY,
+    Authorization:`Bearer ${APIKEY}` ,
+    "Content-Type":"application/json"
+}
+
+// Here are the functions that'll be used
+// create product()
+// save local storage ,update, delete
+
+let title=document.getElementById("title");  // here i am testing the inputs first in the console
+let created_at=document.getElementById("created_at");
+let name= document.getElementById("name");
+let Price=document.getElementById("Price");
+let quantity=document.getElementById("quantity");
+let discPrice= document.getElementById("discPrice");
+
+let category=document.getElementById("category");
+let ImageUrl=document.getElementById("ImageUrl");
+let description=document.getElementById("description");
+let Submit=document.getElementById("Submit");
+console.log(title,created_at,name,Price,quantity,discPrice,category,ImageUrl,description,Submit);
+
+/* create function , i have to save the data first then apply it
+Submit.onclick=function(){
+let dataarr = [];
+let new_product={
+    title:title.value,
+    Price:Price.value,
+    created_at:created_at.value,
+    name:name.value,
+    quantity:quantity.value,
+     discPrice:value ? Number(value) : null,
+
+    category:category.value,
+    ImageUrl:ImageUrl.value,
+    description:description.value,
+
+} 
+ 
+dataarr.push(new_product); //adding values in the array itself
+console.log(new_product); // first i checked that the data is created in the console 
+} */
+ 
+async function getProducts() {
+  const res = await fetch(`${baseUrl}/product`, { headers });
+  const data = await res.json();
+console.log(data)
+  const table = document.getElementById("tableBody");
+  table.innerHTML = "";
+
+  data.forEach(product => {
+    table.innerHTML += `
+      <tr>
+        <td style="width:50px">${product.name}</td>
+
+        <td>${product.price}</td>
+        <td>${product.discPrice}</td>
+        <td>${product.category}</td>
+        <td>${product.quantity}</td>
+        <td>
+         <img
+         style="width:100px"
+              src=${product.img}
+              alt="Fresh Broccoli"
+              class="tableImage"
+            />
+            </td>
+        <td style="width:200px">${product.description}</td>
+        
+ 
+<td>
+  <button onclick='fillForm(${JSON.stringify(product)})'>Update</button>
+</td>
+
+     
+        <td>
+ <button class="btn btn-danger btn-sm" onclick="deleteProduct(${product.id})">Delete</button>
+          </td>
+      </tr>
+    `;
+  });
+} 
+
+
+getProducts();
+
+
+const form = document.getElementById("productForm"); 
+
+form.addEventListener("submit", async function (e) {
+  e.preventDefault();
+  console.log("clicked");
+
+  const name = document.getElementById("name").value.trim();
+  const price = document.getElementById("Price").value.trim();
+  const category = document.getElementById("category").value;
+  const quantity = document.getElementById("quantity").value.trim();
+  const ImageUrl = document.getElementById("ImageUrl").value.trim();
+  const discPriceInput = document.getElementById("discPrice").value.trim(); 
+  const description = document.getElementById("description").value.trim();
+
+  if (!name || !price || !category || !quantity || !ImageUrl || !description) {
+    alert("Please fill all required fields.");
+    return;
+  }
+
+  let priceNum = Number(price);
+  let quantityNum = Number(quantity);
+
+  if (Number.isNaN(priceNum) || Number.isNaN(quantityNum)) {
+    alert("Price and Quantity must be numbers.");
+    return;
+  }
+  let discPrice = null;
+  if (discPriceInput !== "") {
+    let discNum = Number(discPriceInput);
+    if (Number.isNaN(discNum)) {
+      alert("Discount price must be a number.");
+      return;
+    }
+    discPrice = discNum;
+  }
+
+  let productId = document.getElementById("productId").value
+
+  const productData = {
+    name,
+    price: priceNum,
+    category,
+    quantity,
+    img: ImageUrl,    
+    discPrice,       
+    description
+  };
+
+  if (productId) {
+    // UPDATE
+    await fetch(`${baseUrl}/product?id=eq.${productId}`, {
+      method: "PATCH",
+      headers,
+      body: JSON.stringify(productData)
+    });
+        alert("Product has been updated ");
+
+  } else {
+
+    await fetch(`${baseUrl}/product`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(productData)
+    });
+    alert("product added succesfully")
+
+  }
+
+  form.reset();
+  if (document.getElementById("productId")) document.getElementById("productId").value = "";
+  getProducts();
+});
+
+async function deleteProduct(id) {
+  if (!confirm("Are you sure you want to delete this product?")) return;
+
+  try {
+let response = await fetch(`${baseUrl}/product?id=eq.${id}`, {
+      method: "DELETE",
+      headers
+    });
+  
+    alert("Product deleted successfully"); 
+    getProducts();
+
+  } catch (error) {
+    console.error(error);
+  
+  }
+}
+
+function fillForm(product) {
+  document.getElementById("productId").value = product.id;
+  document.getElementById("name").value = product.name;
+  document.getElementById("Price").value = product.price;
+  document.getElementById("quantity").value = product.quantity;
+  document.getElementById("discPrice").value = product.discPrice ?? "";
+  document.getElementById("category").value = product.category;
+  document.getElementById("ImageUrl").value = product.img;
+  document.getElementById("description").value = product.description;
+
+  document.getElementById("Submit").textContent = "Update";
+}
+
+// document.getElementById("Submit").addEventListener("Submit", async function(e) {
+//   e.preventDefault();
+//   console.log("cliked")
+//   const name = document.getElementById("name").value;
+//   const price = document.getElementById("price").value;
+//   const category = document.getElementById("category").value;
+//   const quantity = document.getElementById("quantity").value;
+//   const ImageUrl = document.getElementById("ImageUrl").value;
+//   const discPrice = document.getElementById("discPrice").value;
+//   const description = document.getElementById("description").value;
+
+//   if (!name || !price || !category || !quantity || !ImageUrl || !description) {
+//     alert("Please fill all required fields.");
+//     return false;
+//   }
+
+//   const priceNum = Number(price);
+//   const quantityNum = Number(quantity);
+
+//   if (isNaN(priceNum) || isNaN(quantityNum)) {
+//     alert("Price and Quantity must be numbers.");
+//     return false;
+//   }
+
+//     if (isNaN(discPrice)) {
+//       alert("Discount price must be a number.");
+//       return false;
+//     }
+
+ 
+  
+
+
+
+//   const productData = {
+//     name,
+//     price: Number(price),
+//     category
+//   };
+
+//   if (title) {
+    
+//     await fetch(`${API_URL}?id=eq.${title}`, {
+//       method: "PATCH",
+//       headers,
+//       body: JSON.stringify(productData)
+//     });
+//   } else {
+    
+//     await fetch(API_URL, {
+//       method: "POST",
+//       headers,
+//       body: JSON.stringify(productData)
+//     });
+//   }
+
+//   this.reset();
+//   document.getElementById("title").value = "";
+//   getProducts();
+// });
+
+
+// function updateProduct(title, name, price, category,quantity,discPrice,ImageUrl,description) {
+//   document.getElementById("title").value = title;
+//   document.getElementById("name").value = name;
+//   document.getElementById("price").value = price;
+//   document.getElementById("category").value = category;
+//   document.getElementById("quantity").value = quantity;
+//   document.getElementById("discPrice").value = discPrice;
+//   document.getElementById("ImageUrl").value = ImageUrl;
+//   document.getElementById("description").value = description;
+
+
+// }
+
+
+// async function deleteProduct(title) {
+//   if (confirm("Are you sure?")) {
+//     await fetch(`${API_URL}?id=eq.${title}`, {
+//       method: "DELETE",
+//       headers
+//     });
+//     getProducts();
+//   }
+// }
+
+// getProducts();
+
+// localStorage.setItem("login",JSON.stringify({"name":"pepper","title":23}))
+// let Admin=JSON.parse(localStorage.getItem("login"));
+// console.log(Admin.name);
+
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+        
+
+    </script>
+
+   
+
+    
+
+
+</html>

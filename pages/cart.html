@@ -1,0 +1,204 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop Mart | Cart</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+<header>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary shopNav">
+    <div class="container-fluid position-relative">
+
+      <a class="logo navbar-brand text-white" href="/pages/index.html">
+        Shop<span> Mart</span>
+      </a>
+
+      <a href="/pages/cart.html" class="cartBtn btn position-relative order-lg-3 ms-2">
+        <i class="bi bi-cart3 fs-4 text-white"></i>
+        <span class="cartCounter">0</span>
+      </a>
+
+      <button
+        class="navbar-toggler order-lg-2 ms-2"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-center order-lg-1" id="navbarNavDropdown">
+        <ul class="navbar-nav gap-3 text-center navLinks">
+
+          <li class="nav-item">
+            <a class="nav-link active text-white" href="/pages/index.html">Home</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+              Shop
+            </a>
+            <ul class="dropdown-menu text-start">
+              <li><a class="dropdown-item" href="/pages/products.html?category=fruits">Fruits</a></li>
+              <li><a class="dropdown-item" href="/pages/products.html?category=vegetables">Vegetables</a></li>
+              <li><a class="dropdown-item" href="/pages/products.html?category=bread">Bakery</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/pages/aboutUs.html">About Us</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/pages/contact.html">Contact Us</a>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+</header>
+
+<main class="cart">
+  <section class="cartTable">
+    <div class="cartHead">
+      <div class="cell product">PRODUCT</div>
+      <div class="cell price">PRICE</div>
+      <div class="cell qty">QUANTITY</div>
+      <div class="cell total">TOTAL</div>
+      <div class="cell action">ACTION</div>
+    </div>
+
+    <div class="cartBody">
+
+      <!-- <div class="cartRow">
+        <div class="cell product">
+          <div class="prodWrap">
+            <div class="imgBox">
+              <img src="/assets/tomato.png" alt="Fresh Red Tomatoes" />
+            </div>
+            <div class="prodName">Fresh Red Tomatoes</div>
+          </div>
+        </div>
+
+        <div class="cell price"><strong>$10.00</strong></div>
+
+        <div class="cell qty">
+          <div class="qtyControl">
+            <button class="qtyBtn" type="button">−</button>
+            <input class="qtyInput" type="number" value="1" min="1" />
+            <button class="qtyBtn" type="button">+</button>
+          </div>
+        </div>
+
+        <div class="cell total"><strong>$10.00</strong></div>
+
+        <div class="cell action">
+          <button class="removeBtn" type="button" aria-label="Remove">×</button>
+        </div>
+      </div>
+
+      <div class="cartRow">
+        <div class="cell product">
+          <div class="prodWrap">
+            <div class="imgBox">
+              <img src="/assets/eggs.png" alt="Farm Fresh Eggs" />
+            </div>
+            <div class="prodName">Farm Fresh Eggs</div>
+          </div>
+        </div>
+
+        <div class="cell price"><strong>$05.00</strong></div>
+
+        <div class="cell qty">
+          <div class="qtyControl">
+            <button class="qtyBtn" type="button">−</button>
+            <input class="qtyInput" type="number" value="1" min="1" />
+            <button class="qtyBtn" type="button">+</button>
+          </div>
+        </div>
+
+        <div class="cell total"><strong>$05.00</strong></div>
+
+        <div class="cell action">
+          <button class="removeBtn" type="button" aria-label="Remove">×</button>
+        </div>
+      </div>
+
+      <div class="cartRow">
+        <div class="cell product">
+          <div class="prodWrap">
+            <div class="imgBox">
+              <img src="/assets/watermelon.png" alt="Fresh Watermelon" />
+            </div>
+            <div class="prodName">Fresh Watermelon</div>
+          </div>
+        </div>
+
+        <div class="cell price"><strong>$30.00</strong></div>
+
+        <div class="cell qty">
+          <div class="qtyControl">
+            <button class="qtyBtn" type="button">−</button>
+            <input class="qtyInput" type="number" value="1" min="1" />
+            <button class="qtyBtn" type="button">+</button>
+          </div>
+        </div>
+
+        <div class="cell total"><strong>$30.00</strong></div>
+
+        <div class="cell action">
+          <button class="removeBtn" type="button" aria-label="Remove">×</button>
+        </div>
+      </div>
+
+      <div class="cartRow">
+        <div class="cell product">
+          <div class="prodWrap">
+            <div class="imgBox">
+              <img src="/assets/steak.png" alt="Hot Spicy Steak" />
+            </div>
+            <div class="prodName">Hot Spicy Steak</div>
+          </div>
+        </div>
+
+        <div class="cell price"><strong>$20.00</strong></div>
+
+        <div class="cell qty">
+          <div class="qtyControl">
+            <button class="qtyBtn" type="button">−</button>
+            <input class="qtyInput" type="number" value="1" min="1" />
+            <button class="qtyBtn" type="button">+</button>
+          </div>
+        </div>
+
+        <div class="cell total"><strong>$20.00</strong></div>
+
+        <div class="cell action">
+          <button class="removeBtn" type="button" aria-label="Remove">×</button>
+        </div>
+      </div> -->
+
+    </div>
+  </section>
+
+  <div class="cartBottom">
+    <button id="clearCart" class="clearLink" type="button">Clear Cart</button>
+    <a class="checkoutBtn" href="../pages/checkout.html" type="button">Proceed to Checkout</a>
+  </div>
+</main>
+
+<script type="module" src="../js/cart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

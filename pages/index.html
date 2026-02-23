@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Shop Mart Supermarket | Fresh Groceries & Bakery</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary shopNav">
+    <div class="container-fluid">
+
+      <a class="logo navbar-brand text-white" href="/pages/index.html">
+        Shop<span> Mart</span>
+      </a>
+
+      <div class="nav-actions d-flex align-items-center ms-auto order-lg-3">
+        <a href="/pages/cart.html" class="cartBtn btn position-relative me-2">
+          <i class="bi bi-cart3 fs-4 text-white"></i>
+          <span class="cartCounter">0</span>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse justify-content-center order-lg-2" id="navbarNavDropdown">
+        <ul class="navbar-nav gap-3 text-center navLinks">
+
+          <li class="nav-item">
+            <a class="nav-link active text-white" href="/pages/index.html">Home</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+              Shop
+            </a>
+            <ul class="dropdown-menu text-start">
+              <li><a class="dropdown-item" href="/pages/products.html?category=fruits">Fruits</a></li>
+              <li><a class="dropdown-item" href="/pages/products.html?category=vegetables">Vegetables</a></li>
+              <li><a class="dropdown-item" href="/pages/products.html?category=bread">Bakery</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/pages/aboutUs.html">About Us</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/pages/contact.html">Contact Us</a>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+</header>
+
+<main class="hero">
+  <div class="content">
+    <h2 class="title">FRESH GROCERY</h2>
+    <h1>There's you can Buy your all of Grocery Products. </h1>
+    <a href="/pages/products.html">Shop Now</a>
+  </div>
+<img class="image" src="../assets/hero-img-1.webp" alt="">
+</main>
+
+
+<section class="categories">
+  <h3>Categories</h3>
+  <div class="catList">
+         
+    <article class="cat">
+      <a href="/pages/products.html?category=fruits">
+      <div class="wrapper">
+ 
+        <img src="/assets/fruits.webp" alt="fruits">
+       
+      </a>
+      </div>
+       <h4>Fruits</h4>
+    </article>
+        <article class="cat">
+      <a href="/pages/products.html?category=vegetables">
+      <div class="wrapper">
+ 
+        <img src="/assets/vegetables.webp" alt="vegetables">
+       
+      </a>
+      </div>
+       <h4>Vegetables</h4>
+    </article>
+        <article class="cat">
+      <a href="/pages/products.html?category=juices">
+      <div class="wrapper">
+ 
+        <img src="/assets/juice.webp" alt="juice">
+       
+      </a>
+      </div>
+       <h4>Fresh Juices</h4>
+    </article>
+
+   <article class="cat">
+      <a href="/pages/products.html?category=beverages">
+      <div class="wrapper">
+ 
+        <img src="/assets/drinks.webp" alt="meat">
+       
+      </a>
+      </div>
+       <h4>Cold Drinks</h4>
+    </article>
+
+ <article class="cat">
+      <a href="/pages/products.html?category=meats">
+      <div class="wrapper">
+ 
+        <img src="/assets/meat.webp" alt="meat">
+       
+      </a>
+      </div>
+       <h4>Meat</h4>
+    </article>
+
+
+        <article class="cat">
+      <a href="/pages/products.html?category=bread">
+      <div class="wrapper">
+ 
+        <img src="/assets/bread.webp" alt="bread">
+       
+      </a>
+      </div>
+       <h4>Bread</h4>
+    </article>
+
+       
+       
+  </div>
+
+</section>
+
+<section class="healthySection container">
+<article style="background: url('/assets/c-bg-img-1.webp')no-repeat;" class="healthyContainer">
+    <span>FRUITS</span>
+    <h1>Healthy & Goods <br>  Fruits </h1>
+    <a class="button" href="/pages/products.html?category=fruits">Shop Now</a>
+    <img src="/assets/vegetables2.webp" alt="">
+  </article>
+<article style="background: url('/assets/c-bg-img-2.webp')no-repeat;" class="healthyContainer">
+    <span>VEGETABLE</span>
+    <h1>Fresh & Goods
+Vegetable </h1>
+    <a style="background-color:#f80802" class="button" href="/pages/products.html?category=vegetables">Shop Now</a>
+    <img src="/assets/vegetables2.webp" alt="">
+  </article>
+<article style="background: url('/assets/c-bg-img-3.webp')no-repeat;" class="healthyContainer">
+    <span>JUICES</span>
+    <h1>Best Fruits<br>
+Juices </h1>
+    <a style="background-color: #921dff" class="button" href="/pages/products.html?category=juices">Shop Now</a>
+    <img src="/assets/vegetables2.webp" alt="">
+  </article>
+  
+</section>
+
+
+
+  <section class="productSection">
+  <div class="productSectionInner">
+
+    <div class="productSectionHeader">
+      <h3 class="productSectionTitle">Fresh Vegetables</h3>
+      <a class="viewAllLink" href="/pages/products.html?category=vegetables">View All</a>
+    </div>
+
+    <div class="productFlex" id="vegProducts">
+
+
+
+    </div>
+
+  </div>
+</section>
+
+<section class="container">
+  <div class="flashSale">
+    <div class="content">
+    <h1>WOO! Flash Sale</h1>
+    <p>You get into the 2k+ best Products in  Flash offer with as in
+shaped sofa for sale.</p>
+<a class="button" href="/pages/discountPage.html">Shop Now</a>
+    </div>
+
+    
+  </div>
+
+</section>
+
+  <section class="productSection">
+  <div class="productSectionInner">
+
+    <div class="productSectionHeader">
+      <h3 class="productSectionTitle">Fresh Fruits</h3>
+      <a class="viewAllLink" href="/pages/products.html?category=fruits">View All</a>
+    </div>
+
+    <div class="productFlex" id="fruitsProducts">
+
+
+
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-content">
+
+    <div class="footer-brand">
+      <a href="/pages/index.html" class="footer-logo">
+        Shop<span>Mart</span>
+      </a>
+      <p class="footer-text">
+        Fresh groceries, fruits, vegetables, and bakery items delivered daily.
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="/pages/index.html">Home</a></li>
+        <li><a href="/pages/shop.html">Shop</a></li>
+        <li><a href="/pages/cart.html">Cart</a></li>
+        <li><a href="/pages/contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-links">
+      <h4>Categories</h4>
+      <ul>
+        <li><a href="#">Fruits</a></li>
+        <li><a href="#">Vegetables</a></li>
+        <li><a href="#">Bakery</a></li>
+        <li><a href="#">Juices</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Shop Mart. All rights reserved.</p>
+  </div>
+</footer>
+
+<script type="module" src="/js/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
